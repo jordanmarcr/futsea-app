@@ -2,8 +2,6 @@ desc "This task is called by the Heroku scheduler add-on"
 task :update_feed => :environment do
   puts "Updating feed..."
 
-
-
   Field.all.each do |field|
     field.location.open.upto(field.location.close).each do |time|
       0.upto(7).each do |day|
