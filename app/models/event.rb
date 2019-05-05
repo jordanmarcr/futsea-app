@@ -3,7 +3,7 @@ class Event < ApplicationRecord
 
   belongs_to :field
   has_one :location, through: :field
-  has_many :reservations
+  has_many :reservations, dependent: :delete
   has_many :users, through: :reservations
 
   scope :today, -> { where(datetime: Date.today ) }
