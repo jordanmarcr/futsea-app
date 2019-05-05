@@ -83,9 +83,9 @@
 
  Field.all.each do |field|
    field.location.open.upto(field.location.close).each do |time|
-     0.upto(10).each do |day|
+     0.upto(7).each do |day|
        Event.create(
-         datetime: DateTime.new(2019, Date.today.strftime("%m").to_i, ((Date.today.strftime("%d").to_i-3)+day), time, 0, 0),
+        datetime: DateTime.new(2019, Date.today.strftime("%m").to_i, ((Date.today+day).strftime("%d").to_i), time, 0, 0),
          price: field.location.price,
          field: field
        )
