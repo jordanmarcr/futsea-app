@@ -3,6 +3,8 @@ task :update_feed => :environment do
   puts "Updating feed..."
   if Event.all.maximum('created_at') < Date.today
 
+    Event.all.where('datetime < ?', DateTime.now-3).destroy_all
+
     Field.all.each do |field|
       field.location.open.upto(field.location.close).each do |time|
         0.upto(7).each do |day|
@@ -15,7 +17,7 @@ task :update_feed => :environment do
       end
     end
 
-    1000.times do |n|
+    100.times do |n|
       e = Event.event_open.sample.id
       u = User.count
       Reservation.create(
