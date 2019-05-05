@@ -3,7 +3,7 @@ class Event < ApplicationRecord
 
   belongs_to :field
   has_one :location, through: :field
-  has_many :reservations, dependent: :delete
+  has_many :reservations, dependent: :delete_all
   has_many :users, through: :reservations
 
   scope :today, -> { where(datetime: Date.today ) }
@@ -21,6 +21,5 @@ class Event < ApplicationRecord
   def current_players
     self.reservations.count
   end
-
 
 end
