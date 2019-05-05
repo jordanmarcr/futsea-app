@@ -3,6 +3,9 @@ task :update_feed => :environment do
   puts "Updating feed..."
   if Event.all.maximum('created_at') < Date.today
 
+    cutoff = Date.today.-3.days
+
+
     Field.all.each do |field|
       field.location.open.upto(field.location.close).each do |time|
         0.upto(7).each do |day|
