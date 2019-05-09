@@ -1,7 +1,7 @@
 desc "This task is called by the Heroku scheduler add-on"
 task :update_feed => :environment do
   puts "Updating feed..."
-  if Event.all.maximum('created_at') < Date.today
+  if Event.all.maximum('datetime') < DateTime.now
 
     Event.all.where('datetime < ?', DateTime.now-3).destroy_all
 
